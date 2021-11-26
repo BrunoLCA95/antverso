@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container form-control divP" style="background-color: gray;">
+        <label>Registros de Libros</label>
+    </div>
+    <div class="container form-control divP" style="background-color: gray;">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	        <div class="container form-control divP" style="background-color: black;">
+	        	<a href="/libros/libros-from/000000000" class="btn btn-primary">Agregar</a>
+	        </div>
+	    </div>
+        <div class="container form-control table-responsive" style="background-color: black;">
+            
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Editorial</th>
+                        <th scope="col">ISBN</th>
+                        <th scope="col">Ejemplares</th>
+                        <th scope="col">Ejemplares Prestados</th>
+                        <th scope="col">Ejemplares Restantes</th>
+                        <th scope="col">Alta</th>
+                        <th>Modificar</th>
+                        <td>Eliminar</td>
+                    </tr>
+                </thead>
+
+                <tbody th:each="libro : ${list}">
+                    
+                    <tr>
+                        <th scope="row" th:text="${libro.id}"></th>
+                        <th scope="row" th:text="${libro.titulo}"></th>
+                        <th scope="row" th:text="${libro.anio}"></th>
+                        <th scope="row" th:text="${libro.autor.getNombre()}"></th>
+                        <th scope="row" th:text="${libro.editorial.getNombre()}"></th>
+                        <th scope="row" th:text="${libro.isbn}"></th>
+                        <th scope="row" th:text="${libro.ejemplares}"></th>
+                        <th scope="row" th:text="${libro.ejemplaresPrestados}"></th>
+                        <th scope="row" th:text="${libro.ejemplaresRestantes}"></th>
+                        <th scope="row" th:text="${libro.alta}"></th>
+                        <td><a href="#" class="btn btn-warning" th:href="@{/libros/libros-from/{id}(id=${libro.id})}">Modificar</a></td>
+                        <td><a class="btn btn-danger" th:href="@{/libros/libro-delete/{id}(id=${libro.id})}">Eliminar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+</html>
