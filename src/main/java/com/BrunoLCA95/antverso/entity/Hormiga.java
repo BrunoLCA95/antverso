@@ -1,19 +1,24 @@
 package com.BrunoLCA95.antverso.entity;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name = "hormigas")
-public class Hormiga {
+public class Hormiga implements Serializable{
+
+    private static final long serialVersionUID = 6522896498689132123L;
+
     @Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String nComun;
 
@@ -23,16 +28,27 @@ public class Hormiga {
 
     private String fotoReina;
 
-    @ManyToOne
-    private Temporada temporadaVN;
+    private String tamanoReina;
 
-    private Integer tamanoReina;
+    @OneToMany
+    private List<Pais> pais;
 
-    public String getId() {
+    @OneToMany
+    private List<ComentarioUsuario> comentarioUsuario;
+
+    public List<ComentarioUsuario> getComentarioUsuario() {
+        return comentarioUsuario;
+    }
+
+    public void setComentarioUsuario(List<ComentarioUsuario> comentarioUsuario) {
+        this.comentarioUsuario = comentarioUsuario;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -68,21 +84,20 @@ public class Hormiga {
         this.fotoReina = fotoReina;
     }
 
-    public Temporada getTemporadaVN() {
-        return temporadaVN;
-    }
-
-    public void setTemporadaVN(Temporada temporadaVN) {
-        this.temporadaVN = temporadaVN;
-    }
-
-    public Integer getTamanoReina() {
+    public String getTamanoReina() {
         return tamanoReina;
     }
 
-    public void setTamanoReina(Integer tamanoReina) {
+    public void setTamanoReina(String tamanoReina) {
         this.tamanoReina = tamanoReina;
     }
 
+    public List<Pais> getPais() {
+        return pais;
+    }
+
+    public void setPais(List<Pais> pais) {
+        this.pais = pais;
+    }
     
 }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html,body{
+        color:white;
+        font-family:'Opens Sans',helvetica;  
+        height:100%;
+        width:100%;
+        margin: 0px;
+        }
+    
+        .portada{
+        background: url(https://cdn.discordapp.com/attachments/905954770672554037/915081156658094160/portada.jpg) no-repeat fixed center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        height: 100%;
+        width: 100% ;
+        text-align: center;
+    
+        }
+    
+        .text{
+        margin: 9vw;
+        padding: 30px;
+        background: rgba(14, 8, 8, 0.74);
+        display: inline-block;
+        border-radius: 20px;
+        }
+    
+        .titulo{
+            color: #0ba2d4;
+            align-items: center;
+            font-size: 3vw;
+            text-align: center;
+        }
+        .items{
+            color: #38c7ccf5;
+            align-items: center;
+            font-size: 2vw;
+            text-align: center;
+        }
+        .inputs{
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+
+        
+    </style>
+    <body>
+        <!--margin: 200px 0px 30px 0px;-->  
+        <div class="portada">
+            
+            <div class="text">                     
+                    <div>
+                        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+                            <div class="card-body">
+                                <h5 class="card-title">Exito</h5>
+                                <p class="card-text" th:text="${exito}"></p>
+                            </div>
+                        </div>
+                        <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+                            <div class="card-body">
+                                <h5 class="card-title">Error</h5>
+                                <p class="card-text" th:text="${error}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="container form-control" style="background-color: gray;">
+                        <label style="color: white;">Registro de Usuario</label>
+                    </div>
+                    <div class="container form-control" style="background-color: gray;">
+                        
+                            
+                                <form th:action="@{/users/registration/}" method="post">
+                                    <div class="container text-start">
+
+                                            <div class="form-group inputs">
+                                                    <label style="color: white;" >Usuario:</label>
+                                                    <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+                                            </div>
+                                            
+                                            <div class="form-group inputs">
+                                                <label style="color: white;">Emali:</label>
+                                                <input type="email" class="form-control" name="email" placeholder="Correo">
+                                            </div>
+                                            
+                                            <div class="form-group inputs">
+                                                <label style="color: white;">Contraseña:</label>
+                                                <input type="password" class="form-control" name="contraseña" placeholder="Contraseña">
+                                            </div>
+
+                                            <div class="form-group inputs">
+                                                <label style="color: white;">Confirmacion:</label>
+                                                <input type="password" class="form-control" name="contraseñaV" placeholder="Reingresa tu contraseña">
+                                            </div>
+                                        
+                                            <div class="col-auto inputs">
+                                                <input type="submit" class="btn btn-primary me-md-2" value="Registrar">
+                                                <a href="/" class="btn btn-primary me-md-2">Volver</a>
+                                            </div>
+                                        
+                                    </div>
+                                </form>
+                    </div>
+            </div>
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+</html>

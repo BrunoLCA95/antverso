@@ -29,6 +29,25 @@ public class Usuario implements Serializable{
     @Enumerated(EnumType.STRING)
     private roles rol;
 
+    private String email;
+    
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public roles getRol() {
+        return rol;
+    }
+
+    public void setRol(roles rol) {
+        this.rol = rol;
+    }
+
     public Integer getId() {
         return id;
     }

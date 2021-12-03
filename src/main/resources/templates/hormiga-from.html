@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: black;">
+    
+    <div>
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Exito</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Error</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+    </div>
+
+
+   
+
+    <form th:action="@{/hormiga/nueva/}" th:object="${hormiga}" method="post">
+        <input type="hidden" name="id" id="id" th:field="*{id}">
+            <div class="row g-3 align-items-center">
+                
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Nombre Cientifico:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="nombre" th:field="*{nCientifico}">
+                        </div>
+                    </div>        				
+                </div>
+
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Nombre Comun:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="nombre" th:field="*{nComun}">
+                        </div>
+                    </div>        				
+                </div>
+
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Descripcion:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="nombre" th:field="*{descripcion}">
+                        </div>
+                    </div>        				
+                </div>
+
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Tamaño Reina:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="number" class="form-control" name="telefono" th:field="*{tamanoReina}">
+                        </div>
+                    </div>        				
+                </div>
+
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Foto Reina:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="telefono" th:field="*{fotoReina}">
+                        </div>
+                    </div>        				
+                </div>
+
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Pais donde se encuentran: </label>
+                        </div>
+                        <div class="col-auto">
+                            <select name="pais" id="pais" th:field="*{pais}" multiple>
+                                <option th:each="pais : ${paises}" th:value="${pais.id}"  th:text="${pais.paisnombre}"></option>
+                            </select>
+                        </div>
+                    </div>        				
+                </div>
+
+
+                
+
+
+
+
+
+
+                <div class="col-auto">
+                    <input type="submit" class="btn btn-primary me-md-2" value="Agregar">
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+</html>

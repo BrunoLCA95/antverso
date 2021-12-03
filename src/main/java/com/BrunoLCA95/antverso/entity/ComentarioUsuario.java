@@ -19,9 +19,6 @@ public class ComentarioUsuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    private Hormiga hormiga;
-
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaVN;
@@ -41,14 +38,6 @@ public class ComentarioUsuario {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Hormiga getHormiga() {
-        return hormiga;
-    }
-
-    public void setHormiga(Hormiga hormiga) {
-        this.hormiga = hormiga;
     }
 
     public Date getFechaVN() {
