@@ -2,7 +2,6 @@ package com.BrunoLCA95.antverso.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,9 +11,6 @@ public class Estado {
     @Id
     private Integer id;
 
-    @ManyToOne
-    private Pais idPais;
-
     private String estadonombre;
 
     public Integer getId() {
@@ -23,14 +19,6 @@ public class Estado {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Pais getIdPais() {
-        return idPais;
-    }
-
-    public void setIdPais(Pais idPais) {
-        this.idPais = idPais;
     }
 
     public String getEstadonombre() {
