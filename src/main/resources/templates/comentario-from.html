@@ -27,82 +27,44 @@
     </div>
 
 
-   
-
-    <form th:action="@{/hormiga/nueva/}" th:object="${hormiga}" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" id="id" th:field="*{id}">
+    <form th:action="@{/hormiga/comentario/}" th:object="${comentario}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" id="id" th:field="*{hormiga}">
             <div class="row g-3 align-items-center">
-                
-
                 <div class="col-auto">
                     <div class="row g-3 align-items-center">
                         <div class="col-auto">
-                            <label style="color: white;">Nombre Cientifico:</label>
+                            <label style="color: white;">Pais:</label>
                         </div>
                         <div class="col-auto">
-                            <input type="text" class="form-control" name="nombre" th:field="*{nCientifico}">
-                        </div>
-                    </div>        				
-                </div>
-
-
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Nombre Comun:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" name="nombre" th:field="*{nComun}">
-                        </div>
-                    </div>        				
-                </div>
-
-
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Descripcion:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" class="form-control" name="nombre" th:field="*{descripcion}">
-                        </div>
-                    </div>        				
-                </div>
-
-
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Tamaño Reina:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="number" class="form-control" name="telefono" th:field="*{tamanoReina}">
-                        </div>
-                    </div>        				
-                </div>
-
-
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Foto Reina:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="file" class="form-control" name="file" id="imagen">
-                        </div>
-                    </div>        				
-                </div>
-
-
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Pais donde se encuentran: </label>
-                        </div>
-                        <div class="col-auto">
-                            <select name="pais" id="pais" th:field="*{pais}" multiple>
+                            <select class="form-control" name="autor" th:field="*{pais}">
                                 <option th:each="pais : ${paises}" th:value="${pais.id}"  th:text="${pais.paisnombre}"></option>
                             </select>
+                        </div>
+                    </div>        				
+                </div>
+
+
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Estado:</label>
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-control" name="autor" th:field="*{estado}">
+                                <option th:each="estado : ${estados}" th:value="${estado.id}"  th:text="${estado.estadonombre}"></option>
+                            </select>
+                        </div>
+                    </div>        				
+                </div>
+
+
+                <div class="col-auto">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto">
+                            <label style="color: white;">Fecha:</label>
+                        </div>
+                        <div class="col-auto">
+                            <input type="date" th:field="*{fechaVN}" name="fecha" min="2015-01-01">
                         </div>
                     </div>        				
                 </div>

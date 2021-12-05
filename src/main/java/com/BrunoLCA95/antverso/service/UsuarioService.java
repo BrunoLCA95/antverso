@@ -36,6 +36,7 @@ public class UsuarioService implements UserDetailsService{
         user_save.setNombre(user.getNombre());
         user_save.setContraseña(new BCryptPasswordEncoder().encode(user.getContraseña()));
         user_save.setRol(roles.ADMIN);
+        user_save.setEmail(user.getEmail());
         return usuarioRepository.save(user_save);
 
     }

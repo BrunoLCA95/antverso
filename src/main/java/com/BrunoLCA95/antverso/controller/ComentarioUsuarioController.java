@@ -7,9 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/comentario")
+@RequestMapping("/comentarioU")
 public class ComentarioUsuarioController {
-    
     @Autowired
     private ComentarioUsuarioService comentarioUsuarioService;
 

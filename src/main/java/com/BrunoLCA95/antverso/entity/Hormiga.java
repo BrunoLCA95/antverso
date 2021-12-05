@@ -33,17 +33,6 @@ public class Hormiga implements Serializable{
     @OneToMany
     private List<Pais> pais;
 
-    @OneToMany
-    private List<ComentarioUsuario> comentarioUsuario;
-
-    public List<ComentarioUsuario> getComentarioUsuario() {
-        return comentarioUsuario;
-    }
-
-    public void setComentarioUsuario(List<ComentarioUsuario> comentarioUsuario) {
-        this.comentarioUsuario = comentarioUsuario;
-    }
-
     public Integer getId() {
         return id;
     }

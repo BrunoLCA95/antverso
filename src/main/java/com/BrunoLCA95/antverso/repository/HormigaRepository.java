@@ -22,8 +22,4 @@ public interface HormigaRepository extends CrudRepository<Hormiga, Integer>{
     @Query("SELECT a FROM Hormiga a WHERE a.id = :id")
     public Hormiga buscarPorId(@Param("id")Integer id);
 
-
-
-
-
 }

@@ -17,35 +17,32 @@ public class Pais {
     @OneToMany
     private List<Estado> estados;
 
-    
+    public Integer getId() {
+        return id;
+    }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-
-
     public String getPaisnombre() {
         return paisnombre;
     }
-
-
 
     public void setPaisnombre(String paisnombre) {
         this.paisnombre = paisnombre;
     }
 
-
-
     public List<Estado> getEstados() {
         return estados;
     }
 
-
-
     public void setEstados(List<Estado> estados) {
         this.estados = estados;
     }
+
+    
+
 
 
 

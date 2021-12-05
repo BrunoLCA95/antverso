@@ -9,38 +9,169 @@
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<style>
+    html,body{
+    color:white;
+    font-family:'Opens Sans',helvetica;  
+    height:100%;
+    width:100%;
+    margin: 0px;
+    }
+
+    .portada{
+    background: url(https://cdn.discordapp.com/attachments/905954770672554037/915081156658094160/portada.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100% ;
+    text-align: center;
+
+    }
+
+    .text{
+    margin: 10px;
+    padding: 10px;
+    background: rgba(14, 8, 8, 0.74);
+    border-radius: 10px;
+    display: inline-block;
+    }
+
+    .titulo{
+        color: #0ba2d4;
+        align-items: center;
+        font-size: 3vw;
+        text-align: center;
+    }
+    .items{
+        color: #38c7ccf5;
+        align-items: center;
+        font-size: 2vw;
+        text-align: center;
+    }
+
+    .horizontales{
+        width: 200px;
+	    padding: 1px 0;
+	    margin: 0
+    }
+
+
+    .imgR{
+        margin: 5px;
+    }
+
+    .divT{
+        height: 14vw;
+        overflow-x: auto;
+    }
     
 
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Foto Reina: </th>
-                <th scope="col">Nombre Cientifico</th>
-                <th scope="col">Nombre Comun</th>
-                <th scope="col">Descripcion</th>
-                <th scope="col">Tamaño Reina</th>
-                <th scope="col">Paises donde se encuentra</th>
-            </tr>
-        </thead>
+</style>
+<body>
 
-        <tbody th:each="hormiga : ${hormiga}">
+    <div class="portada">
             
-            <tr>
-                <th scope="row" th:text="${hormiga.nCientifico}"></th>
-                <th scope="row" th:text="${hormiga.nComun}"></th>
-                <th scope="row" th:text="${hormiga.descripcion}"></th>
-                <th scope="row" th:text="${hormiga.tamanoReina}"></th>
-                <td>
-                    <table th:each="pais : ${paisesH}">
-                        <tr>
-                            <td th:text="${pais.paisnombre}"></td>
-                        </tr>   
+        <div class="text"> 
+        
+            <div class="divV">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-primary me-md-2" type="button">Volver</button>
+                  </div>
+            </div>
+
+            <div class="contenedor">
+                <div class="row align-items-start">
+                    <div class="col" th:each="hormiga : ${hormiga}">
+                        <div class="imgR">
+                            <img th:src="@{'/img/reinas/' + ${hormiga.fotoReina}}">
+                        </div>
+                    </div>
+        
+                    <div class="col" th:each="hormiga : ${hormiga}" style="text-align: start;">
+                        <div class="imgR">
+                            <label>Nombre Cientifico: </label>
+                            <label th:text="${hormiga.nCientifico}"></label>
+                            <br>
+                            <label>Nombre Comun: </label>
+                            <label th:text="${hormiga.nComun}"></label>
+                            <br>
+                            <label>Tamaño de la Reina: </label>
+                            <label th:text="${hormiga.tamanoReina}"></label>
+                            <br>
+                            <label>Descripcion: </label>
+                            <label th:text="${hormiga.descripcion}"></label>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="contenedor">
+                <div class="imgR">
+                        <div class="" style="text-align: center;">
+                            <label>Reinas detectadas por Usuarios</label>
+                            
+                        </div>
+                </div>
+                <div class="imgR table-responsive divT" >
+                    <table class="table table-dark" style="height: 20px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Pais</th>
+                                <th scope="col">Provincia/Estado</th>
+                                <th scope="col">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="comentario : ${comentarios}">
+                            <tr>
+                                <th scope="row" th:text="${comentario.usuario.getNombre()}"></th>
+                                <th scope="row" th:text="${comentario.pais.getPaisnombre()}"></th>
+                                <th scope="row" th:text="${comentario.estado.getEstadonombre()}"></th>
+                                <th scope="row" th:text="${comentario.fechaVN}"></th>
+                            </tr>
+                        </tbody>
                     </table>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </div>
+            </div>
+
+            <div class="contenedor">
+                <div class="imgR">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="#" class="btn btn-primary me-md-2" th:href="@{/hormiga/comentario/{id}(id=${hormiga.id})}">Agregar Comentario</a>
+                        
+                      </div>
+                </div>
+            </div>
+        
+
+
+
+
+
+
+
+
+        
+        </div>
+
+    </div>
+
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"

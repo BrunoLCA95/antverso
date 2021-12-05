@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,6 +32,17 @@ public class ComentarioUsuario {
 
     @ManyToOne
     private Usuario usuario;
+
+    @OneToOne
+    private Hormiga hormiga;
+
+    public Hormiga getHormiga() {
+        return hormiga;
+    }
+
+    public void setHormiga(Hormiga hormiga) {
+        this.hormiga = hormiga;
+    }
 
     public Integer getId() {
         return id;
