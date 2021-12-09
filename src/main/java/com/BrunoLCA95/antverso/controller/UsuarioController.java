@@ -37,7 +37,7 @@ public class UsuarioController {
             try {
                 usuarioService.save(user);
                 model.put("exito", "Registro Exitoso");
-                return "user-registration";
+                return "redirect:/login";
             } catch (WebExeption e) {
                 model.put("error", e.getMessage());
                 return "user-registration";
@@ -45,7 +45,8 @@ public class UsuarioController {
 
         }else{
             model.put("error", "Las contraseñas no coinciden");
-            return "user-registration";
+            
+            return "redirect:/login";
         }        
     }
 

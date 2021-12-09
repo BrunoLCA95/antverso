@@ -1,12 +1,15 @@
 package com.BrunoLCA95.antverso.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.BrunoLCA95.antverso.commons.WebExeption;
 import com.BrunoLCA95.antverso.entity.ComentarioUsuario;
 import com.BrunoLCA95.antverso.entity.Hormiga;
+import com.BrunoLCA95.antverso.entity.Pais;
 import com.BrunoLCA95.antverso.repository.ComentarioUsuarioRepository;
 import com.BrunoLCA95.antverso.repository.HormigaRepository;
+import com.BrunoLCA95.antverso.repository.PaisRepository;
 import com.BrunoLCA95.antverso.repository.UsuarioRepository;
 import com.BrunoLCA95.antverso.service.ComentarioUsuarioService;
 import com.BrunoLCA95.antverso.service.EstadoService;
@@ -44,7 +47,10 @@ public class HormigaController {
     private EstadoService estadoService;
 
     @Autowired
-    ComentarioUsuarioRepository comentarioUsuarioRepository;
+    private ComentarioUsuarioRepository comentarioUsuarioRepository;
+
+    @Autowired
+    private PaisRepository paisRepository;
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -59,8 +65,22 @@ public class HormigaController {
 
     @GetMapping("/hormigaP/{id}")
     public String showByPais(@PathVariable ("id") Integer id, Model model){
-        model.addAttribute("hormigaP", hormigaRepository.findByPais(paisService.get(id)));
-        return "hormigas";
+        Pais pais = paisRepository.buscarPais(id);
+
+        model.addAttribute("pais", pais);
+
+        List<Hormiga> hormigasP = new ArrayList<>();
+
+        for (Hormiga hormiga : hormigaRepository.findAll()) {
+            for (Pais pais2 : hormiga.getPais()) {
+                if (pais.equals(pais2)) {
+                    hormigasP.add(hormiga);
+                }
+            }
+        }
+
+        model.addAttribute("hormigaP", hormigasP);
+        return "hormiga-pais";
     }
 
     @GetMapping("/hormiga/{id}")
@@ -89,19 +109,47 @@ public class HormigaController {
 
     @GetMapping("/comentario/{id}")
     public String ShowComentario( @PathVariable ("id") Integer id, Model model){
-        model.addAttribute("paises", paisService.getAll());
-        model.addAttribute("estados", estadoService.getAll());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetails userDetails = null;
+        if (principal instanceof UserDetails) {
+        userDetails = (UserDetails) principal;
+        }
+        try {
+            if (userDetails.getUsername() != null) {
+                model.addAttribute("paises", paisService.getAll());
+                model.addAttribute("estados", estadoService.getAll());
+    
+                ComentarioUsuario comentario = new ComentarioUsuario();
+                comentario.setHormiga(hormigaRepository.buscarPorId(id));
+                model.addAttribute("comentario", comentario);
+    
+                return "comentario-from";
+            }            
+        } catch (Exception e) {
+            return "redirect:/login";
+        }
 
-        ComentarioUsuario comentario = new ComentarioUsuario();
-        comentario.setHormiga(hormigaRepository.buscarPorId(id));
-        model.addAttribute("comentario", comentario);
 
-        return "comentario-from";
+
+        if (userDetails.getUsername() != null) {
+            model.addAttribute("paises", paisService.getAll());
+            model.addAttribute("estados", estadoService.getAll());
+
+            ComentarioUsuario comentario = new ComentarioUsuario();
+            comentario.setHormiga(hormigaRepository.buscarPorId(id));
+            model.addAttribute("comentario", comentario);
+
+            return "comentario-from";    
+
+        }else{
+
+            return "login";
+        }
+        
     }
 
     @PostMapping("/comentario/")
-    public String saveComentario(ComentarioUsuario com, ModelMap model) throws WebExeption{
-        
+    public String saveComentario(ComentarioUsuario com, ModelMap model) throws WebExeption{        
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDetails userDetails = null;
         if (principal instanceof UserDetails) {

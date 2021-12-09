@@ -38,11 +38,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers().permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic();       
+                .antMatchers("/*","/hormiga/hormigaNC/*","/hormiga/hormigaP/**","/buscar/","/img/**","/users/registration/**").permitAll()
+                .and().formLogin()
+					.loginPage("/login")
+						.loginProcessingUrl("/logincheck")
+						.usernameParameter("email")
+						.passwordParameter("clave")
+						.defaultSuccessUrl("/loginsuccess")
+						.failureUrl("/login?error=error")
+						.permitAll()
+                .and().logout()
+					.logoutUrl("/logout")
+					.logoutSuccessUrl("/")
+					.permitAll()
+				.and().csrf()
+					.disable(); 
     }
 
 }

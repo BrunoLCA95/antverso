@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    html,body{
+    color:white;
+    font-family:'Opens Sans',helvetica;  
+    height:100%;
+    width:100%;
+    margin: 0px;
+    }
+
+    .portada{
+    background: url(https://cdn.discordapp.com/attachments/905954770672554037/915081156658094160/portada.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100% ;
+    text-align: center;
+
+    }
+
+    .text{
+    width: 80%;
+    height: 90%;
+    margin: 10px;
+    padding: 10px;
+    background: rgba(14, 8, 8, 0.74);
+    border-radius: 10px;
+    display: inline-block;
+    }
+
+
+
+    .titulo{
+        color: #0ba2d4;
+        align-items: center;
+        font-size: 3vw;
+        text-align: center;
+    }
+    .items{
+        color: #38c7ccf5;
+        align-items: center;
+        font-size: 2vw;
+        text-align: center;
+    }
+
+    .horizontales{
+        width: 200px;
+	    padding: 1px 0;
+	    margin: 0
+    }
+
+
+    .imgR{
+        margin: 5px;
+    }
+
+    .divT{
+        height: 14vw;
+        overflow-x: auto;
+    }
+
+    .contenedor{
+        margin: 20px;
+        border-radius: 20px;
+        overflow-y: visible;
+    }
+    
+
+</style>
+<body>
+
+    <div class="portada">
+            
+        <div class="text"> 
+        
+            <div class="divV">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="btn btn-primary me-md-2" th:href="@{/}">Volver</a>
+                  </div>
+            </div>
+            <div class="divV" th:each="pais : ${pais}">
+               
+                    <label th:text="'Hormigas originarias de ' +${pais.paisnombre}"></label>
+               
+            </div>
+
+            <div class="contenedor">
+                <div class="row align-items-start">
+
+                    <table class="table table-dark" style="height: 20px;">
+                        <thead>
+                            <tr>
+                                <th scope="col">Reina</th>
+                                <th scope="col">Genero</th>
+                                <th scope="col">Nombre Comun</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody th:each="hormiga : ${hormigaP}">
+                            <tr>
+                                <th scope="row"><img height="70px" width="70px" th:src="@{'/img/reinas/' + ${hormiga.fotoReina}}"></th>
+                                <th scope="row" th:text="${hormiga.nCientifico}"></th>
+                                <th scope="row" th:text="${hormiga.nComun}"></th>
+                                <th><a href="#" class="btn btn-warning" th:href="@{/hormiga/hormigaNC/{id}(id=${hormiga.id})}">Detalles</a></th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+
+
+
+        
+        </div>
+
+    </div>
+
+
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous"></script>
+</body>
+</html>

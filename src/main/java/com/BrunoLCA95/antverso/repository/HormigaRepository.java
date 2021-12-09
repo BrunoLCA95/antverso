@@ -17,9 +17,10 @@ public interface HormigaRepository extends CrudRepository<Hormiga, Integer>{
     public Hormiga findByNCientifico(@Param("nCientifico")String nCientifico);
 
     @Query("SELECT a FROM Hormiga a WHERE a.pais = :pais")
-    public List<Hormiga> findByPais(@Param("pais") Pais pais);
+    public List<Hormiga> buscarPorPais(@Param("pais") Pais pais);
 
     @Query("SELECT a FROM Hormiga a WHERE a.id = :id")
     public Hormiga buscarPorId(@Param("id")Integer id);
 
+    
 }

@@ -3,12 +3,24 @@ package com.BrunoLCA95.antverso.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ManyToAny;
+
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+
 
 @Entity
 @Table(name = "hormigas")
@@ -30,8 +42,9 @@ public class Hormiga implements Serializable{
 
     private String tamanoReina;
 
-    @OneToMany
+    @ManyToMany
     private List<Pais> pais;
+
 
     public Integer getId() {
         return id;

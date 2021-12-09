@@ -9,8 +9,78 @@
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: black;">
+<style>
+    html,body{
+    color:white;
+    font-family:'Opens Sans',helvetica;  
+    height:100%;
+    width:100%;
+    margin: 0px;
+    }
+
+    .portada{
+    background: url(https://cdn.discordapp.com/attachments/905954770672554037/915081156658094160/portada.jpg) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    width: 100% ;
+    text-align: center;
+
+    }
+
+    .text{
+    width: 80%;
+    height: 30%;
+    margin: 10px;
+    padding: 10px;
+    background: rgba(14, 8, 8, 0.74);
+    border-radius: 10px;
+    display: inline-block;
+    }
+
+
+
+    .titulo{
+        color: #0ba2d4;
+        align-items: center;
+        font-size: 3vw;
+        text-align: center;
+    }
+    .items{
+        color: #38c7ccf5;
+        align-items: center;
+        font-size: 2vw;
+        text-align: center;
+    }
+
+    .horizontales{
+        width: 200px;
+	    padding: 1px 0;
+	    margin: 0
+    }
+
+
+    .imgR{
+        margin: 5px;
+    }
+
+    .divT{
+        height: 14vw;
+        overflow-x: auto;
+    }
+
+    .contenedor{
+        margin: 20px;
+        border-radius: 20px;
+        overflow-y: visible;
+    }
     
+
+</style>
+<body>
+
     <div>
         <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
             <div class="card-body">
@@ -27,54 +97,90 @@
     </div>
 
 
-    <form th:action="@{/hormiga/comentario/}" th:object="${comentario}" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" id="id" th:field="*{hormiga}">
-            <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Pais:</label>
-                        </div>
-                        <div class="col-auto">
-                            <select class="form-control" name="autor" th:field="*{pais}">
-                                <option th:each="pais : ${paises}" th:value="${pais.id}"  th:text="${pais.paisnombre}"></option>
-                            </select>
-                        </div>
-                    </div>        				
-                </div>
 
 
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Estado:</label>
+
+    <div class="portada">
+            
+        <div class="text"> 
+        
+            <div class="divV">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="btn btn-primary me-md-2" th:href="@{/}">Volver</a>
+                  </div>
+            </div>
+
+            <div class="contenedor">
+                <div class="row align-items-start">
+
+                    <form th:action="@{/hormiga/comentario/}" th:object="${comentario}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" id="id" th:field="*{hormiga}">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label style="color: white;">Pais:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <select class="form-control" name="autor" th:field="*{pais}">
+                                            <option th:each="pais : ${paises}" th:value="${pais.id}"  th:text="${pais.paisnombre}"></option>
+                                        </select>
+                                    </div>
+                                </div>        				
+                            </div>
+            
+            
+                            <div class="col-auto">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label style="color: white;">Estado:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <select class="form-control" name="autor" th:field="*{estado}">
+                                            <option th:each="estado : ${estados}" th:value="${estado.id}"  th:text="${estado.estadonombre}"></option>
+                                        </select>
+                                    </div>
+                                </div>        				
+                            </div>
+            
+            
+                            <div class="col-auto">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label style="color: white;">Fecha:</label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="date" th:field="*{fechaVN}" name="fecha" min="2015-01-01">
+                                    </div>
+                                </div>        				
+                            </div>
+            
+            
+                            <div class="col-auto">
+                                <input type="submit" class="btn btn-primary me-md-2" value="Agregar">
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <select class="form-control" name="autor" th:field="*{estado}">
-                                <option th:each="estado : ${estados}" th:value="${estado.id}"  th:text="${estado.estadonombre}"></option>
-                            </select>
-                        </div>
-                    </div>        				
-                </div>
+                    </form>
 
 
-                <div class="col-auto">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label style="color: white;">Fecha:</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="date" th:field="*{fechaVN}" name="fecha" min="2015-01-01">
-                        </div>
-                    </div>        				
-                </div>
-
-
-                <div class="col-auto">
-                    <input type="submit" class="btn btn-primary me-md-2" value="Agregar">
                 </div>
             </div>
-        </form>
+
+
+
+
+        
+        </div>
+
+    </div>
+
+
+    
+
+
+
+    
+
 
 
 

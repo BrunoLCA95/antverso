@@ -103,6 +103,22 @@
 
 </style>
 <body>
+    <div>
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Exito</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Error</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="portada">
             
@@ -111,7 +127,7 @@
             <div class="contenedor">
                 <div class="row align-items-start">
                     <h1>AntUniverse</h1>
-                    <label for="">Biblioteca de Hormigas</label>
+                    <label for="">Inicio de Sesion</label>
                 </div>
                 
             </div>
@@ -119,49 +135,29 @@
         </div>
 
 
-
         <div class="text1 row"> 
-            <div class="recordatorio">
-                <div style="align-items: center;">
-                    <h3>Acerca de AntUniverse</h3>
-                </div>
-                
-                <div style="text-align: left">
-                    <label>AntUniverse es un proyecto desarrollado integrando todos los conocimientos obtenidos durante el curso de Porgramacion full Stack de la empresa
-                        Egg. El mismo busca acercar la informacion basica y necesaria para comenzar en el hobby de la crianza de hormigas, proporcionandole al usuario una facil 
-                        identificacion de las especies que puede hallar en la zona donde vive.
-                    </label>
-                </div>
-                
-            </div>
+
             <div class="row align-items-start">
-                <label for="">Puedes buscar hormigas por su genero o por su pais de distribucion</label>
-                
+                <label for="">Para poder comentar debes iniciar sesion</label>
             </div>
             <div class="buscador">
                 <div class="contenedor">
-                <form th:action="@{/buscar/}" method="post">
+                <form th:action="@{/logincheck}" method="post">
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <Label>Nombre : </Label>    
+                            <Label>Usuario : </Label>    
                         </div>
                         <div class="col-auto">
-                            <select class="form-control" name="genero">
-                                <option value="0">---Seleccionar Genero---</option>
-                                <option th:each="hormiga : ${hormigas}" th:value="${hormiga.id}"  th:text="${hormiga.nCientifico}"></option>
-                            </select>
+                            <input type="text" name="email"> <!--Usuario-->
                         </div>
                         <div class="col-auto">
-                            <label>Pais :</label>
+                            <label>Contraseña :</label>
                         </div>
                         <div class="col-auto">
-                            <select class="form-control" name="pais">
-                                <option value="0">---Seleccionar Pais---</option>
-                                <option th:each="pais : ${paises}" th:value="${pais.id}"  th:text="${pais.paisnombre}"></option>
-                            </select>
+                            <input type="password" name="clave"> <!--password-->
                         </div>
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-success">Cargar</button>
+                            <button type="submit" class="btn btn-success">Iniciar Sesion</button>
                         </div>
                     </div>
                 </form>
@@ -169,29 +165,10 @@
                 </div>
             </div>
 
-
-            <div class="hobby">
-                <div style="align-items: center;">
-                    <h3>¿Porque comenzar en este hobby?</h3>
-                </div>
-                
-                <div style="text-align: left">
-                    <label>
-                        La hormiga es un insecto social capaz de llevar a cabo empresas muy complejas como colonia.
-                         Una hormiga por sí sola no es gran cosa, pero cuando actúan como colonia son capaces de salvar casi cualquier
-                          obstáculo. Normalmente el comportamiento de las hormigas lo vemos muy de pasada, 
-                          tal vez alguna hormiga exploradora por el jardín o por la cocina, 
-                          o una hilera de hormigas que transporta semillas o se lleva esforzadamente algunas migajas de pan.
-                          
-                           Teniendo en casa tu propia colonia en un entorno controlado y observable podrás ver con tus propios 
-                           ojos diversos y fascinantes comportamientos de las hormigas, observar cómo protegen a la reina, 
-                           cómo cuidan de los huevos y larvas, cómo organizan el hormiguero y aprender conductas tales como trofalaxia,
-                            transporte pupal o reclutamiento.
-                    </label>
-                </div>
-                
+            <div class="row align-items-start">
+                <a th:href="@{/users/registration/}">O Registrarte</a>
             </div>
-        
+       
 
        
         </div>
